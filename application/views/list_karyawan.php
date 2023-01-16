@@ -1,4 +1,17 @@
 <?php include 'layouts/head-main.php'; ?>
+<?php 
+function get_interval($date){
+    if ($date=='0000-00-00') {
+       return ' ';
+    }else{
+        $datetime1 = new DateTime(date('d F Y'));
+        $datetime2 = new DateTime(date('d F Y', strtotime($date)));
+        $interval = $datetime1->diff($datetime2);
+        return $interval->format('%y tahun %m bulan %d hari');   
+    }
+    
+}
+ ?>
 
 <head>
 
@@ -6,10 +19,9 @@
     <?php include 'layouts/head.php'; ?>
 
     <!-- DataTables -->
-    <link href="<?php echo base_url('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css') ?>" />
-    <link href="<?php echo base_url('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css') ?>" />
-    <!-- Responsive datatable examples -->
-    <link href="<?php echo base_url('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css') ?>" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/4.2.1/css/fixedColumns.dataTables.min.css">
+    
     <!-- twitter-bootstrap-wizard css -->
     <link rel="stylesheet" href="<?php echo base_url('assets/libs/twitter-bootstrap-wizard/prettify.css') ?>">
     <!-- choices css -->
@@ -21,6 +33,7 @@
 
 
     <?php include 'layouts/head-style.php'; ?>
+   
 
 </head>
 
@@ -104,37 +117,37 @@
                                                                                 </a>
                                                                             </li>
 
-                                                                            <li class="nav-item">
+                                                                            <!-- <li class="nav-item">
                                                                                 <a href="#progress-grade" class="nav-link" data-toggle="tab">
                                                                                     <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Grade">
                                                                                         <i class="bx bx-user-pin"></i>
                                                                                     </div>
                                                                                 </a>
-                                                                            </li>
+                                                                            </li> -->
 
-                                                                            <li class="nav-item">
+                                                                            <!-- <li class="nav-item">
                                                                                 <a href="#progress-upah-berlaku" class="nav-link" data-toggle="tab">
                                                                                     <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Upah Berlaku">
                                                                                         <i class="bx bx-money"></i>
                                                                                     </div>
                                                                                 </a>
-                                                                            </li>
+                                                                            </li> -->
 
-                                                                            <li class="nav-item">
+                                                                            <!-- <li class="nav-item">
                                                                                 <a href="#progress-upah-efisiensi" class="nav-link" data-toggle="tab">
                                                                                     <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Upah Efisiensi">
                                                                                         <i class="bx bx-bar-chart-square"></i>
                                                                                     </div>
                                                                                 </a>
-                                                                            </li>
+                                                                            </li> -->
 
-                                                                            <li class="nav-item">
+                                                                            <!-- <li class="nav-item">
                                                                                 <a href="#progress-efisiensi" class="nav-link" data-toggle="tab">
                                                                                     <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Efisiensi">
                                                                                         <i class="bx bx-bar-chart"></i>
                                                                                     </div>
                                                                                 </a>
-                                                                            </li>
+                                                                            </li> -->
                                                                         </ul>
                                                                         <!-- wizard-nav -->
 
@@ -319,7 +332,7 @@
                                                                                         <div class="row">
                                                                                             <div class="col-lg-4">
                                                                                                 <div class="mb-3">
-                                                                                                    <label for="progresspill-tanggalmasuk">Tanggal Masuk</label>
+                                                                                                    <label for="progresspill-tanggalmasuk">Mulai Bekerja</label>
                                                                                                     <input type="text" class="form-control" name="mulaibekerja" id="datepicker-datetime-tanggalmasuk" placeholder="Tanggal Masuk">
                                                                                                 </div>
                                                                                             </div>
@@ -332,7 +345,7 @@
                                                                                             </div>
                                                                                             <div class="col-lg-4">
                                                                                                 <div class="mb-3">
-                                                                                                    <label for="progresspill-pengangkatan">Tanggal Pengangkatan</label>
+                                                                                                    <label for="progresspill-pengangkatan">Jadi Karyawan Tetap</label>
                                                                                                     <input type="text" class="form-control" name="tgldiangkat" id="datepicker-datetime-tanggalangkat" placeholder="Tanggal Pengangkatan">
                                                                                                 </div>
                                                                                             </div>
@@ -391,10 +404,10 @@
                                                                                                     <label for="choices-single-no-sorting" class="form-label ">Status Jabatan</label>
                                                                                                     <select class="form-control" name="statusjabatan" id="statusjabatan" placeholder="Status Jabatan">
                                                                                                         <option value="">Pilih status jabatan karyawan</option>
-                                                                                                        <option value="Definitif">Def. - Definitif</option>
-                                                                                                        <option value="Penganti Sementara">Pgs. - Penganti Sementara</option>
-                                                                                                        <option value="Pejabat Sementara">Pjs. - Pejabat Sementara</option>
-                                                                                                        <option value="Pelaksana Tugas">Plt. - Pelaksana Tugas</option>
+                                                                                                        <option value="Def.">Def. - Definitif</option>
+                                                                                                        <option value="Pgs.">Pgs. - Penganti Sementara</option>
+                                                                                                        <option value="Pjs.">Pjs. - Pejabat Sementara</option>
+                                                                                                        <option value="Plt.">Plt. - Pelaksana Tugas</option>
                                                                                                     </select>
                                                                                                 </div>
                                                                                             </div>
@@ -421,11 +434,11 @@
                                                                                         </div>
                                                                                     <ul class="pager wizard twitter-bs-wizard-pager-link">
                                                                                         <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i> Previous</a></li>
-                                                                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Next <i class="bx bx-chevron-right ms-1"></i></a></li>
+                                                                                        <li class="float-end"><button id="submit" type="submit" class="btn btn-primary">Save Changes</button></li>
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="tab-pane" id="progress-grade">
+                                                                            <!-- <div class="tab-pane" id="progress-grade">
                                                                                 <div>
                                                                                     <div class="text-center mb-4">
                                                                                         <h5>GRADE</h5>
@@ -456,8 +469,8 @@
                                                                                         <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Next <i class="bx bx-chevron-right ms-1"></i></a></li>
                                                                                     </ul>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="tab-pane" id="progress-upah-berlaku">
+                                                                            </div> -->
+                                                                            <!-- <div class="tab-pane" id="progress-upah-berlaku">
                                                                                 <div>
                                                                                     <div class="text-center mb-4">
                                                                                         <h5>UPAH BERLAKU</h5>
@@ -522,8 +535,8 @@
                                                                                         <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Next <i class="bx bx-chevron-right ms-1"></i></a></li>
                                                                                     </ul>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="tab-pane" id="progress-upah-efisiensi">
+                                                                            </div> -->
+                                                                           <!--  <div class="tab-pane" id="progress-upah-efisiensi">
                                                                                 <div>
                                                                                     <div class="text-center mb-4">
                                                                                         <h5>UPAH EFISIENSI</h5>
@@ -586,9 +599,9 @@
                                                                                         <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Next <i class="bx bx-chevron-right ms-1"></i></a></li>
                                                                                     </ul>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> -->
 
-                                                                            <div class="tab-pane" id="progress-efisiensi">
+                                                                            <!-- <div class="tab-pane" id="progress-efisiensi">
                                                                                 <div>
                                                                                     <div class="text-center mb-4">
                                                                                         <h5>EFISIENSI</h5>
@@ -700,7 +713,7 @@
                                                                                         <li class="float-end"><button id="submit" type="submit" class="btn btn-primary">Save Changes</button></li>
                                                                                     </ul>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> -->
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -717,43 +730,102 @@
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
                                 </div>
-                            <div class="card-body">
-                                <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>NPK</th>
-                                            <th>Nama</th>
-                                            <th>Jabatan</th>
-                                            <th>Bidang</th>
-                                            <th>Satuan Organisasi</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
+                             <div class="card-body">
+                                <div class="table-rep-plugin">
+                                    <div class="table-responsive mb-0" data-pattern="priority-columns">
+                                        <table id="tech-companies-1" class="table table-editable table-striped table-bordered text-nowrap table-edits">
+                                            <thead class="text-center">
+                                                
+                                                <tr>
+                                                    <th colspan="10" style="text-align: center;">PERSONAL BACKGROUND</th>
+                                                    <th colspan="3" style="text-align: center;">CONTACT PERSON</th>
+                                                    <th colspan="4" style="text-align: center;">EDUCATIONAL BACKGROUND</th>
+                                                    <th colspan="10" style="text-align: center;">CAREER</th>
+                                                    <th colspan="1" style="text-align: center;">UMUR PEKERJA</th>
+                                                    <th colspan="2" style="text-align: center;">LAMA KERJA</th>
+                                                </tr>
+                                                <tr class="table-striped">
+                                                    <th>No</th>
+                                                    <th style="min-width: 90px;">Aksi</th>
+                                                    <th style="min-width: 152px;">Nama Karyawan</th>
+                                                    <th style="min-width: 152px;">NPK</th>
+                                                    <th style="min-width: 152px;">Tempat Lahir</th>
+                                                    <th style="min-width: 152px;">Tanggal Lahir</th>
+                                                    <th style="min-width: 152px;">Jenis Kelamin</th>
+                                                    <th style="min-width: 152px;">Agama</th>
+                                                    <th style="min-width: 152px;">Status</th>
+                                                    <th style="min-width: 152px;">NIK</th>
+                                                    <th style="min-width: 152px;">Alamat</th>
+                                                    <th style="min-width: 152px;">No. Hp</th>
+                                                    <th style="min-width: 152px;">E-Mail</th>
+                                                    <th style="min-width: 152px;">Tingkat Pendidikan</th>
+                                                    <th style="min-width: 152px;">Fakultas/Jurusan</th>
+                                                    <th style="min-width: 152px;">Institusi</th>
+                                                    <th style="min-width: 152px;">Tahun Lulus</th>
+                                                    <th style="min-width: 152px;">Mulai Bekerja</th>
+                                                    <th style="min-width: 152px;">Jadi Karyawan tetap</th>
+                                                    <th style="min-width: 152px;">Status Jabatan</th>
+                                                    <th style="min-width: 152px;">Nama Jabatan</th>
+                                                    <th style="min-width: 152px;">Status+Jabatan</th>
+                                                    <th style="min-width: 152px;">TMT Jabatan</th>
+                                                    <th style="min-width: 152px;">Bidang/Bagian</th>
+                                                    <th style="min-width: 152px;">Satuan Organisasi</th>
+                                                    <th style="min-width: 152px;">Kategori Fungsi</th>
+                                                    <th style="min-width: 152px;">Level Jabatan</th>
+                                                    <th style="min-width: 152px;">Umur</th>
+                                                    <th style="min-width: 152px;">Dari Mulai Kerja</th>
+                                                    <th style="min-width: 152px;">Dari Menjadi Karyawan Tetap</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $no = 0; foreach ($karyawan as $data) {?>
+                                                <tr data-id="<?php echo $data->npk ?>">
+                                                    <td><?php $no = $no+1; echo $no; ?></td>
+                                                    <td>
+                                                        <div>
+                                                            <div>
+                                                                 <button type="button" class="btn btn-soft-primary waves-effect waves-light edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="bx bx-edit-alt font-size-17 align-middle"></i></button>
+                                                                <button onclick="location.href='<?php echo site_url('admin/detail_karyawan/'.$data->npk) ?>'" type="button" class="btn btn-soft-success waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="Detail"><i class="bx bx-detail font-size-17 align-middle"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td data-field="nama"><?php echo $data->nama; ?></td>
+                                                    <td ><?php echo $data->npk; ?></td>
+                                                    <td data-field="tempatlahir"><?php echo $data->tempatlahir; ?></td>
+                                                    <td data-field="tgllahir"><?php echo $data->tgllahir; ?></td>
+                                                    <td data-field="jeniskelamin"><?php echo $data->jeniskelamin; ?></td>
+                                                    <td data-field="agama"><?php echo $data->agama; ?></td>
+                                                    <td data-field="idmd_marital"><?php echo $data->idmd_marital; ?></td>
+                                                    <td data-field="nik"><?php echo $data->nik; ?></td>
+                                                    <td data-field="alamatsekarang"><?php echo $data->alamatsekarang; ?></td>
+                                                    <td data-field="nohp"><?php echo $data->nohp; ?></td>
+                                                    <td data-field="email"><?php echo $data->email; ?></td>
+                                                    <td data-field="levelpendidikan"><?php echo $data->levelpendidikan; ?></td>
+                                                    <td data-field="jurusan"><?php echo $data->jurusan; ?></td>
+                                                    <td data-field="institusi"><?php echo $data->institusi; ?></td>
+                                                    <td data-field="tahunlulus"><?php echo $data->tahunlulus; ?></td>
+                                                    <td data-field="mulaibekerja"><?php echo $data->mulaibekerja; ?></td>
+                                                    <td data-field="tgldiangkat"><?php echo $data->tgldiangkat; ?></td>
+                                                    <td data-field="statusjabatan"><?php echo $data->statusjabatan; ?></td>
+                                                    <td ><?php echo $data->namajabatan; ?></td>
+                                                    <td><?php if ($data->statusjabatan != "Def.") {
+                                                        echo $data->statusjabatan;
+                                                    } ?> <?php echo $data->namajabatan; ?></td>
+                                                    <td ><?php echo $data->tmt_jabatan; ?></td>
+                                                    <td><?php echo $data->namabidang; ?></td>
+                                                    <td><?php echo $data->namaorganisasi; ?></td>
+                                                    <td><?php echo $data->kategorifungsi; ?></td>
+                                                    <td><?php echo $data->level.' - '.$data->namalevel; ?></td>
+                                                    <td><?php echo get_interval($data->tgllahir); ?></td>
+                                                    <td><?php echo get_interval($data->mulaibekerja); ?></td>
+                                                    <td><?php echo get_interval($data->tgldiangkat); ?></td>
+                                                </tr>
+                                                <?php   } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-
-                                    <tbody>
-                                        <?php $no=0; foreach ($karyawan as $data) {?>
-                                        <tr>
-                                            <td><?php $no=$no+1; echo $no ?></td>
-                                            <td><?php echo $data->npk ?></td>
-                                            <td><?php echo $data->nama ?></td>
-                                            <td><?php echo $data->namajabatan; ?></td>
-                                            <td><?php echo $data->namabidang; ?></td>
-                                            <td><?php echo $data->namaorganisasi; ?></td>
-                                            <td width="50"> 
-                                                <div>
-                                                    <div class="btn-group btn-group-example" role="group">
-                                                        <button type="button" class="btn btn-sm btn-info w-xs">Edit</i></button>
-                                                        <button onclick="location.href='<?php echo site_url('admin/detail_karyawan/'.$data->npk) ?>'" type="button" class="btn btn-sm btn-primary w-xs">Detail</i></button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <?php } ?>
-                                        
-                                    </tbody>
-                                </table>
+                                </div>
 
                             </div>
                         </div>
@@ -781,22 +853,6 @@
 
 <?php include 'layouts/vendor-scripts.php'; ?>
 
-<!-- Required datatable js -->
-<script src="<?php echo base_url('assets/libs/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
-<!-- Buttons examples -->
-<script src="<?php echo base_url('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/libs/jszip/jszip.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/libs/pdfmake/build/pdfmake.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/libs/pdfmake/build/vfs_fonts.js') ?>"></script>
-<script src="<?php echo base_url('assets/libs/datatables.net-buttons/js/buttons.html5.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/libs/datatables.net-buttons/js/buttons.print.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js') ?>"></script>
-
-<!-- Responsive examples -->
-<script src="<?php echo base_url('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') ?>"></script>
 
 
 <!-- twitter-bootstrap-wizard js -->
@@ -814,9 +870,9 @@
 
 <!-- Sweet Alerts js -->
 <script src="<?php echo base_url('assets/libs/sweetalert2/sweetalert2.min.js') ?>"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/fixedcolumns/4.2.1/js/dataTables.fixedColumns.min.js"></script>
 
-<!-- Datatable init js -->
-<script src="<?php echo base_url('assets/js/pages/datatables.init.js') ?>"></script>
 
 <!-- datepicker js -->
 <script src="<?php echo base_url('assets/libs/flatpickr/flatpickr.min.js') ?>"></script>
@@ -827,8 +883,31 @@
 <!-- init js -->
 <script src="<?php echo base_url('assets/js/pages/form-advanced.init.js') ?>"></script>
 
+<script src="<?php echo base_url('assets/libs/table-edits/build/table-edits.min.js') ?>"></script>
+
+<script src="<?php echo base_url('assets/js/pages/table-editable.int.js') ?>"></script>
 
 <script src="<?php echo base_url('assets/js/app.js') ?>"></script>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#tech-companies-1').DataTable({
+        fixedHeader: false,
+        order: [[1, 'asc']],
+        scrollY:        "500px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         false,
+        fixedColumns:   {
+            left: 3
+        }
+    });
+    } );
+</script>
 <script type="text/javascript">
     function checknpk(handleData){
            var npk = $('#npk').val();

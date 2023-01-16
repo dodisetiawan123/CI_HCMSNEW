@@ -22,6 +22,11 @@
     <link href="<?php echo base_url('assets/libs/choices.js/public/assets/styles/choices.min.css') ?>" rel="stylesheet" type="text/css" />
 
     <?php include 'layouts/head-style.php'; ?>
+    <style type="text/css">
+        .table-bordered, .table-bordered td, .table-bordered th {
+                border: 1px solid #bbbbbb;
+            }
+    </style>
 
 </head>
 
@@ -137,10 +142,32 @@
                                                                                     <div class="row">
                                                                                         <div class="col-lg-12">
                                                                                             <div class="mb-3">
+                                                                                                <label for="validationTooltip03">Kode Jabatan</label>
+                                                                                                <input type="text" class="form-control" name="kodejabatan" placeholder="Kode Jabatan" style="text-transform: capitalize" id="validationTooltip03" required>
+                                                                                                 <div class="invalid-feedback">
+                                                                                                    Isi kode jabatan organisasi yang valid.
+                                                                                                 </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="mb-3">
                                                                                                 <label for="validationTooltip03">Nama Jabatan</label>
                                                                                                 <input type="text" class="form-control" name="namajabatan" placeholder="Nama jabatan" style="text-transform: capitalize" id="validationTooltip03" required>
                                                                                                  <div class="invalid-feedback">
                                                                                                     Isi nama jabatan organisasi yang valid.
+                                                                                                 </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="validationTooltip03">Standart Personil(Orang)</label>
+                                                                                                <input type="number" class="form-control" name="standart" placeholder="Jumlah personil" style="text-transform: capitalize" id="validationTooltip03" required>
+                                                                                                 <div class="invalid-feedback">
+                                                                                                    Isi standart personil jabatan yang valid.
                                                                                                  </div>
                                                                                             </div>
                                                                                         </div>
@@ -173,13 +200,19 @@
 
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Jabatan</th>
-                                            <th>Nama Bidang</th>
-                                            <th>Nama Organisasi</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
+                                        <tr class="align-middle text-center">
+                                            <th rowspan="2">No</th>
+                                            <th rowspan="2">Aksi</th>
+                                            <th rowspan="2">Kode Jabatan</th>
+                                            <th rowspan="2">Nama Jabatan</th>
+                                            <th colspan="3" style="text-align: center;">Total</th>
+                                            <!-- <th rowspan="2">Status</th> -->
+                                        </tr>
+                                        <tr class="table-striped table-light">
+                                            
+                                            <th>Standard</th>
+                                            <th>Actual</th>
+                                            <th>Gap(+/-)</th>
                                         </tr>
                                     </thead>
 
@@ -188,18 +221,19 @@
                                        <?php $no = 0; foreach ($jabatan as $data) {?>
                                         <tr>
                                             <td width="50"><?php echo $no=$no+1; ?></td>
-                                            <td><?php echo $data->namajabatan; ?></td>
-                                            <td><?php echo $data->namabidang; ?></td>
-                                            <td><?php echo $data->namaorganisasi; ?></td>
-                                            <td><span class="badge bg-primary">Approved</span></td>
                                             <td width="50"> 
                                                 <div>
-                                                    <div class="btn-group btn-group-example" role="group">
-                                                        <button type="button" class="btn btn-sm btn-info w-xs">Detail</i></button>
-                                                        <button onclick="deletejabatan(<?php echo $data->idmd_jabatan ?>)" type="button" class="btn btn-sm btn-danger w-xs">Hapus</i></button>
+                                                        <button type="button" class="btn btn-soft-primary waves-effect waves-light edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="bx bx-edit-alt font-size-17 align-middle"></i></button>
+                                                        <button onclick="deletejabatan(<?php echo $data->idmd_jabatan ?>)" type="button" class="btn btn-soft-danger waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="Detail"><i class="bx bx-trash-alt font-size-17 align-middle"></i></button>
                                                     </div>
-                                                </div>
                                             </td>
+                                            <td><strong><?php echo $data->kodebidang.' '.$data->kodebidang.' '.$data->kodejabatan; ?></strong></td>
+                                            <td><?php echo $data->namajabatan; ?></td>
+                                            <td><strong><?php echo $data->standard ?></strong></td>
+                                            <td><strong><u><a href="<?php echo site_url('admin/jbtpersonil/'.$data->idmd_jabatan) ?>"><?php echo $data->actual ?></a></u></strong></td>
+                                            <td><?php echo $data->standard-$data->actual ?></td>
+                                            <!-- <td><span class="badge bg-primary">Approved</span></td> -->
+
                                         </tr>
                                         <?php } ?>
                                         

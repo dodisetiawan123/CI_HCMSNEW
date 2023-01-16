@@ -67,12 +67,37 @@ class Admin extends CI_Controller {
 	//ORGANISASI
 	public function satuan_organisasi()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$this->data['organisasi'] = $this->data_organisasi_model->get_organisasi();
 		$this->load->view('satuan_organisasi', $this->data);
+		}
 	}
 
 	public function insertorganisasi()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$data = array(
 				'kodeorganisasi' => strtoupper($this->input->post('kodeorganisasi')),
 				'namaorganisasi' => ucwords($this->input->post('namaorganisasi'))
@@ -80,18 +105,31 @@ class Admin extends CI_Controller {
 		$this->data_organisasi_model->insertorganisasi($data);
 		$this->session->set_flashdata('done', 'Data berhasil tersimpan');
 		redirect('admin/satuan_organisasi', 'refresh');
+		}
 
 		
 	}
 
 	public function hapus_satuan($idmd_organisasi)
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		
 		$this->data_organisasi_model->hapusorganisasi($idmd_organisasi);
 		$this->session->set_flashdata('done', 'Data berhasil diupdate');
 		redirect('admin/satuan_organisasi', 'refresh');
 
-		
+		}
 	}
 
 
@@ -100,13 +138,38 @@ class Admin extends CI_Controller {
 	//BIDANG
 	public function bidang()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$this->data['bidang'] = $this->data_bidang_model->get_bidang();
 		$this->data['organisasi'] = $this->data_bidang_model->get_organisasi();
 		$this->load->view('bidang_organisasi', $this->data);
+		}
 	}
 
 	public function insertbidang()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$data = array(
 				'kodebidang' => strtoupper($this->input->post('kodebidang')),
 				'namabidang' => ucwords($this->input->post('namabidang')),
@@ -116,18 +179,49 @@ class Admin extends CI_Controller {
 		$this->data_bidang_model->insertbidang($data);
 		$this->session->set_flashdata('done', 'Data berhasil tersimpan');
 		redirect('admin/bidang', 'refresh');
-
+		}
 		
 	}
 
 	public function hapus_bidang($idmd_bidang)
 	{
-		
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$this->data_bidang_model->hapusbidang($idmd_bidang);
 		$this->session->set_flashdata('done', 'Data berhasil diupdate');
 		redirect('admin/bidang', 'refresh');
-
+		}
 		
+	}
+
+	public function detail_bidang($idmd_bidang)
+	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
+		$this->data['namabidang'] = $this->data_bidang_model->get_namabdg($idmd_bidang);
+		$this->data['jabatan'] = $this->data_bidang_model->get_jabatan($idmd_bidang);
+		$this->load->view('detail_bidang', $this->data);
+		}
 	}
 
 
@@ -136,13 +230,38 @@ class Admin extends CI_Controller {
 	//BAGIAN
 	public function bagian()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$this->data['bagian'] = $this->data_bagian_model->get_bagian();
 		$this->data['organisasi'] = $this->data_bagian_model->get_organisasi();
 		$this->load->view('bagian_organisasi', $this->data);
+		}
 	}
 
 	public function insertbagian()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$data = array(
 				'kodebagian' => strtoupper($this->input->post('kodebagian')),
 				'namabagian' => ucwords($this->input->post('namabagian')),
@@ -151,7 +270,7 @@ class Admin extends CI_Controller {
 
 		$this->data_bagian_model->insertbagian($data);
 		redirect('admin/bagian', 'refresh');
-
+		}
 		
 	}
 
@@ -159,49 +278,147 @@ class Admin extends CI_Controller {
 	//JABATAN
 	public function jabatan()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$this->data['jabatan'] = $this->data_jabatan_model->get_jabatan();
+		// var_dump($this->data['jabatan']);
+		// exit;
 		$this->data['organisasi'] = $this->data_jabatan_model->get_organisasi();
 		$this->load->view('jabatan_organisasi', $this->data);
+		}
+	}
+
+	public function jbtpersonil($idmd_jabatan)
+	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
+		$this->data['jabatan'] = $this->data_jabatan_model->get_namajbt($idmd_jabatan);
+		$this->data['personaldata'] = $this->data_jabatan_model->get_personil($idmd_jabatan);
+		$this->load->view('jabatan_personil', $this->data);
+		}
 	}
 
 	public function insertjabatan()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$data = array(
 				'namajabatan' => ucwords($this->input->post('namajabatan')),
+				'kodejabatan' => $this->input->post('kodejabatan'),
+				'standart' => $this->input->post('standart'),
 				'idmd_bidang' => $this->input->post('idmd_bidang')
 			);
 
 		$this->data_jabatan_model->insertjabatan($data);
 		$this->session->set_flashdata('done', 'Data berhasil tersimpan');
 		redirect('admin/jabatan', 'refresh');
-
+		}
 		
 	}
 
 	public function hapus_jabatan($idmd_jabatan)
 	{
-		
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$this->data_jabatan_model->hapusjabatan($idmd_jabatan);
 		$this->session->set_flashdata('done', 'Data berhasil diupdate');
 		redirect('admin/jabatan', 'refresh');
-
-		
+		}
 	}
 
 	public function struktur()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$this->load->view('struktur_organisasi');
+		}
 	}
 
 	//PROYEK
 	public function master_proyek()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$this->load->view('dashboard');
+		}
 	}
 
 	public function jabatan_proyek()
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		$this->load->view('dashboard');
+		}
 	}
 
 	//Data Karyawan
@@ -317,6 +534,60 @@ class Admin extends CI_Controller {
 		}
 	}
 
+
+	public function apiupdatedata($npk)
+	{
+		
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
+
+			$data_md_karyawan = array(
+				'idmd_marital' => $this->input->post('idmd_marital'),
+				'nama' => $this->input->post('nama'),
+				'tempatlahir' => $this->input->post('tempatlahir'),
+				'tgllahir' => $this->input->post('tgllahir'),
+				'jeniskelamin' => $this->input->post('jeniskelamin'),
+				'agama' => $this->input->post('agama'),
+				'nik' => $this->input->post('nik'),
+				'alamatsekarang' => $this->input->post('alamatsekarang'),
+				'nohp' => $this->input->post('nohp'),
+				'email' => $this->input->post('email'),
+				'mulaibekerja' => $this->input->post('mulaibekerja'),
+				'tgldiangkat' => $this->input->post('tgldiangkat')
+			);
+			$data_mk_pendidikan = array(
+				'levelpendidikan' => $this->input->post('levelpendidikan'),
+				'jurusan' => $this->input->post('jurusan'),
+				'institusi' => $this->input->post('institusi'),
+				'tahunlulus' => $this->input->post('tahunlulus')
+			);
+			$data_mk_jabatan = array(
+				'statusjabatan' => $this->input->post('statusjabatan'),
+			);
+
+			$this->data_karyawan_model->updatemdkaryawan($data_md_karyawan,$npk);
+			$this->data_karyawan_model->updatemkpendidikan($data_mk_pendidikan,$npk);
+			$this->data_karyawan_model->updatemkjabatan($data_mk_jabatan,$npk);
+
+		}
+	}
+
+
+
+
+
+
+
 	public function updatedata($npk)
 	{
 		
@@ -409,6 +680,18 @@ class Admin extends CI_Controller {
 
 	public function detail_karyawan($npk)
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		if (empty($npk)) {
 			echo "Hayo mau ngapainnn";
 			exit;
@@ -418,7 +701,9 @@ class Admin extends CI_Controller {
 			$this->data['grade'] = $this->data_karyawan_model->get_grade();
 			$this->data['organisasi'] = $this->data_karyawan_model->get_organisasi();
 			$this->data['personaldata'] = $this->data_karyawan_model->getpersonaldata($npk);
+			$this->data['riwayatjbt'] = $this->data_karyawan_model->getriwayatjbt($npk);
 			$this->load->view('detail_karyawan', $this->data);
+		}
 		}
 
 		
@@ -428,6 +713,18 @@ class Admin extends CI_Controller {
 
 	public function kehadiran_karyawan($npk)
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		if (empty($npk)) {
 			echo "Hayo mau ngapainnn";
 			exit;
@@ -435,12 +732,23 @@ class Admin extends CI_Controller {
 			$this->data['personaldata'] = $this->data_karyawan_model->getpersonaldata($npk);
 			$this->load->view('kehadiran_karyawan', $this->data);
 		}
-
-		
+		}
 	}
 
 	public function uploadfoto($npk)
 	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
 		if (empty($npk)) {
 			echo "Hayo mau ngapainnn";
 			exit;
@@ -472,7 +780,66 @@ class Admin extends CI_Controller {
                     redirect('admin/detail_karyawan/'.$npk);
             }
 		}
+		}
+		
+	}
 
+	public function transferjabatan($npk)
+	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
+		if (empty($npk)) {
+			echo "Hayo mau ngapainnn";
+			exit;
+		}else{
+			$startdate = $this->input->post('tglmulai');
+			$oldjabatan = $this->data_karyawan_model->ambil_data($npk);
+			$additional_data = array(
+                        'npk'  => $oldjabatan['npk'],
+                        'tglmulai'  => $oldjabatan['tglmulai'],
+                        'idmd_organisasi'  => $oldjabatan['idmd_organisasi'],
+                        'namaorganisasi'  => $oldjabatan['namaorganisasi'],
+                        'idmd_bidang'  => $oldjabatan['idmd_bidang'],
+                        'namabidang'  => $oldjabatan['namabidang'],
+                        'idmd_jabatan'  => $oldjabatan['idmd_jabatan'],
+                        'namajabatan'  => $oldjabatan['namajabatan'],
+                        'idmd_level'  => $oldjabatan['idmd_level'],
+                        'namalevel'  => $oldjabatan['namalevel'],
+                        'statusjabatan'  => $oldjabatan['statusjabatan'],
+                        'kategorifungsi'  => $oldjabatan['kategorifungsi'],
+                        'keterangan'  => $this->input->post('keterangantrf'),
+                        'tglberahir'  => date('Y-m-d',strtotime($startdate . "-1 days")),
+                    );
+			$this->data_karyawan_model->insert_riwayat($additional_data);
+
+
+			$update_data = array(
+                        'npk'  => $this->input->post('npktrf'),
+                        'tglmulai'  => $this->input->post('tglmulai'),
+                        'idmd_organisasi'  => $this->input->post('idmd_organisasitrf'),
+                        'idmd_bidang'  => $this->input->post('idmd_bidangtrf'),
+                        'idmd_jabatan'  => $this->input->post('idmd_jabatantrf'),
+                        'idmd_level'  => $this->input->post('idmd_leveltrf'),
+                        'statusjabatan'  => $this->input->post('statusjabatantrf'),
+                        'kategorifungsi'  => $this->input->post('kategorifungsitrf')
+                    );
+
+			$this->data_karyawan_model->update_jabatan($update_data,$npk);
+			$this->session->set_flashdata('done', 'Data berhasil tersimpan');
+			redirect('admin/detail_karyawan/'.$npk);
+			
+		}
+		}
 		
 	}
 

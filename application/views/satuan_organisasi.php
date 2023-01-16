@@ -18,6 +18,13 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/libs/twitter-bootstrap-wizard/prettify.css') ?>">
 
     <?php include 'layouts/head-style.php'; ?>
+    <style type="text/css">
+        .table-bordered, .table-bordered td, .table-bordered th {
+                border: 1px solid #bbbbbb;
+            }
+    </style>
+    
+
 
 </head>
 
@@ -146,12 +153,20 @@
 
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Kode Organisasi</th>
-                                            <th>Nama Organisasi</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
+                                         <tr class="align-middle text-center">
+                                            <th rowspan="2">No</th>
+                                            <th rowspan="2">Aksi</th>
+                                            <th rowspan="2">Kode Organisasi</th>
+                                            <th rowspan="2">Nama Organisasi</th>
+                                            <th colspan="3" style="text-align: center;">Total</th>
+                                            <!-- <th rowspan="2">Status</th> -->
+
+                                        </tr>
+                                        <tr class="table-striped table-light">
+                                            
+                                            <th>Standard</th>
+                                            <th>Actual</th>
+                                            <th>Gap(+/-)</th>
                                         </tr>
                                     </thead>
 
@@ -160,17 +175,23 @@
                                         <?php $no = 0; foreach ($organisasi as $data) {?>
                                         <tr>
                                             <td width="50"><?php echo $no=$no+1; ?></td>
-                                            <td><?php echo $data->kodeorganisasi; ?></td>
-                                            <td><?php echo $data->namaorganisasi; ?></td>
-                                            <td><span class="badge bg-primary">Approved</span></td>
                                             <td width="50"> 
                                                 <div>
-                                                    <div class="btn-group btn-group-example" role="group">
-                                                        <button type="button" class="btn btn-sm btn-info w-xs">Detail</i></button>
-                                                        <button onclick="deletesatuan(<?php echo $data->idmd_organisasi ?>)" type="button" class="btn btn-sm btn-danger w-xs">Hapus</i></button>
+                                                    <div>
+                                                         <button type="button" class="btn btn-soft-primary waves-effect waves-light edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="bx bx-edit-alt font-size-17 align-middle"></i></button>
+                                                         <button onclick="deletesatuan(<?php echo $data->idmd_organisasi ?>)" type="button" class="btn btn-soft-danger waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="Detail"><i class="bx bx-trash-alt font-size-17 align-middle"></i></button>
+                                                        <button onclick="location.href='<?php echo site_url('admin/detail_organisasi/'.$data->idmd_organisasi) ?>'" type="button" class="btn btn-soft-success waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="Detail"><i class="bx bx-detail font-size-17 align-middle"></i></button>
                                                     </div>
                                                 </div>
+
+
                                             </td>
+                                            <td><strong><?php echo $data->kodeorganisasi; ?></strong></td>
+                                            <td><?php echo $data->namaorganisasi; ?></td>
+                                            <td>3</td>
+                                            <td>5</td>
+                                            <td>2</td>
+                                            <!-- <td><span class="badge bg-primary">Approved</span></td> -->
                                         </tr>
                                         <?php } ?>
                                         

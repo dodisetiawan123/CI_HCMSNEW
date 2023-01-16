@@ -19,6 +19,13 @@ $(document).ready(function() {
         $('#progrss-wizard').find('.progress-bar').css({width:$percent+'%'});
     }});
 
+    $('#transfer-wizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+        var $total = navigation.find('li').length;
+        var $current = index+1;
+        var $percent = ($current/$total) * 100;
+        $('#progrss-wizard').find('.progress-bar').css({width:$percent+'%'});
+    }});
+
 });
 
 // Active tab pane on nav link

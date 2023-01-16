@@ -12,29 +12,50 @@ $(function () {
     var pickers = {};
     $('.table-edits tr').editable({
         dropdowns: {
-            gender: ['Male', 'Female']
+            jeniskelamin: ['LK', 'PR'],
+            idmd_marital: ['BK', 'TK', 'BS', 'K'],
+            levelpendidikan: ['SD', 'SMP', 'SMA', 'SMK', 'Diploma 1', 'Diploma 2', 'Diploma 3', 'Diploma 4', 'Sarjana 1', 'Sarjana 2'],
+            statusjabatan: ['Def.', 'Pgs.', 'Pjs.', 'Plt.'],
+            agama: ['ISLAM', 'HINDU', 'KRISTEN', 'KATOLIK', 'BUDHA']
           },
+        maintainWidth: true,
+        keyboard: true,
+        dblclick: true,
         edit: function (values) {
             $(".edit i", this)
-                .removeClass('fa-pencil-alt')
-                .addClass('fa-save')
+                .removeClass('bx-edit-alt')
+                .addClass('bx-save')
                 .attr('title', 'Save');
+
         },
         save: function (values) {
             $(".edit i", this)
-                .removeClass('fa-save')
-                .addClass('fa-pencil-alt')
+                .removeClass('bx-save')
+                .addClass('bx-edit-alt')
                 .attr('title', 'Edit');
+                
 
-            if (this in pickers) {
+                
+            var id = $(this).data('id');
+            $.post('apiupdatedata/' + id, values)
+                .done(function() {
+                    alert( "Data berhasil di update" );
+                  })
+                  .fail(function() {
+                    alert( "Data gagal di update" );
+                  })
+
+                
+             if (this in pickers) {
                 pickers[this].destroy();
                 delete pickers[this];
-            }
+            }     
+
         },
         cancel: function (values) {
             $(".edit i", this)
-                .removeClass('fa-save')
-                .addClass('fa-pencil-alt')
+                .removeClass('bx-save')
+                .addClass('bx-edit-alt')
                 .attr('title', 'Edit');
 
             if (this in pickers) {
@@ -42,6 +63,11 @@ $(function () {
                 delete pickers[this];
             }
         }
-    });
+
+    }
+
+    );
+
+    
 });
 

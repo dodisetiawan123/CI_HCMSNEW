@@ -26,13 +26,7 @@
                 <i class="fa fa-fw fa-bars"></i>
             </button>
 
-            <!-- App Search-->
-            <form class="app-search d-none d-lg-block">
-                <div class="position-relative">
-                    <input type="text" class="form-control" placeholder="<?php echo $language["Search"]; ?>">
-                    <button class="btn btn-primary" type="button"><i class="bx bx-search-alt align-middle"></i></button>
-                </div>
-            </form>
+            
         </div>
 
         <div class="d-flex">
@@ -74,43 +68,31 @@
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
                                     <img src="<?php echo base_url('assets/images/brands/github.png') ?>" alt="Github">
-                                    <span>GitHub</span>
+                                    <span>Database</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
                                     <img src="<?php echo base_url('assets/images/brands/bitbucket.png') ?>" alt="bitbucket">
-                                    <span>Bitbucket</span>
+                                    <span>Payroll</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
                                     <img src="<?php echo base_url('assets/images/brands/dribbble.png') ?>" alt="dribbble">
-                                    <span>Dribbble</span>
+                                    <span>Attendance</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row g-0">
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="#">
+                                    <img src="<?php echo base_url('assets/images/brands/github.png') ?>" alt="Github">
+                                    <span>Aset Komputer/Laptop</span>
                                 </a>
                             </div>
                         </div>
 
-                        <div class="row g-0">
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="<?php echo base_url('assets/images/brands/dropbox.png') ?>" alt="dropbox">
-                                    <span>Dropbox</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="<?php echo base_url('assets/images/brands/mail_chimp.png') ?>" alt="mail_chimp">
-                                    <span>Mail Chimp</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="<?php echo base_url('assets/images/brands/slack.png') ?>" alt="slack">
-                                    <span>Slack</span>
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -118,7 +100,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="bell" class="icon-lg"></i>
-                    <span class="badge bg-danger rounded-pill">5</span>
+                    <!-- <span class="badge bg-danger rounded-pill">0</span> -->
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
                     <div class="p-3">
@@ -127,68 +109,12 @@
                                 <h6 class="m-0"> <?php echo $language["Notifications"]; ?> </h6>
                             </div>
                             <div class="col-auto">
-                                <a href="#!" class="small text-reset text-decoration-underline"> <?php echo $language["Unread"]; ?> (3)</a>
+                                <a href="#!" class="small text-reset text-decoration-underline"> <?php echo $language["Unread"]; ?> (0)</a>
                             </div>
                         </div>
                     </div>
                     <div data-simplebar style="max-height: 230px;">
-                        <a href="#!" class="text-reset notification-item">
-                            <div class="d-flex">
-                                <img src="<?php echo base_url('assets/images/users/avatar-3.jpg') ?>" class="me-3 rounded-circle avatar-sm" alt="user-pic">
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1"><?php echo $language["James_Lemire"]; ?></h6>
-                                    <div class="font-size-13 text-muted">
-                                        <p class="mb-1"><?php echo $language["It_will_seem_like_simplified_English"]; ?>.</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span><?php echo $language["1_hours_ago"]; ?></span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#!" class="text-reset notification-item">
-                            <div class="d-flex">
-                                <div class="avatar-sm me-3">
-                                    <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                        <i class="bx bx-cart"></i>
-                                    </span>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1"><?php echo $language["Your_order_is_placed"]; ?></h6>
-                                    <div class="font-size-13 text-muted">
-                                        <p class="mb-1"><?php echo $language["If_several_languages_coalesce_the_grammar"]; ?></p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span><?php echo $language["3_min_ago"]; ?></span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#!" class="text-reset notification-item">
-                            <div class="d-flex">
-                                <div class="avatar-sm me-3">
-                                    <span class="avatar-title bg-success rounded-circle font-size-16">
-                                        <i class="bx bx-badge-check"></i>
-                                    </span>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1"><?php echo $language["Your_item_is_shipped"]; ?></h6>
-                                    <div class="font-size-13 text-muted">
-                                        <p class="mb-1"><?php echo $language["If_several_languages_coalesce_the_grammar"]; ?></p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span><?php echo $language["3_min_ago"]; ?></span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#!" class="text-reset notification-item">
-                            <div class="d-flex">
-                                <img src="<?php echo base_url('assets/images/users/avatar-6.jpg') ?>" class="me-3 rounded-circle avatar-sm" alt="user-pic">
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1"><?php echo $language["Salena_Layfield"]; ?></h6>
-                                    <div class="font-size-13 text-muted">
-                                        <p class="mb-1"><?php echo $language["As_a_skeptical_Cambridge_friend_of_mine_occidental"]; ?>.</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span><?php echo $language["1_hours_ago"]; ?></span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                       
                     </div>
                     <div class="p-2 border-top d-grid">
                         <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
@@ -198,11 +124,6 @@
                 </div>
             </div>
 
-            <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item right-bar-toggle me-2">
-                    <i data-feather="settings" class="icon-lg"></i>
-                </button>
-            </div>
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item bg-soft-light border-start border-end" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -274,18 +195,6 @@
 
                    
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-components" role="button">
-                            <i data-feather="box"></i><span data-key="t-components">Proyek</span>
-                            <div class="arrow-down"></div>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
-
-                            <a href="apps-calendar.php" class="dropdown-item" data-key="t-calendar">Master Proyek</a>
-                            <a href="apps-chat.php" class="dropdown-item" data-key="t-chat">Jabatan Proyek</a>
-                           
-                        </div>
-                    </li>
 
                    
                     <li class="nav-item dropdown">

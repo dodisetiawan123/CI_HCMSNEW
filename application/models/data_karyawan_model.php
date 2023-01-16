@@ -12,12 +12,15 @@ class Data_karyawan_model extends CI_Model {
 
     public function get_karyawan()
     {
-        $this->db->select('nama,md_karyawan.npk,md_organisasi.namaorganisasi,md_bidang.namabidang,md_jabatan.namajabatan');
+        $this->db->select('nama,md_karyawan.npk,md_organisasi.namaorganisasi,md_bidang.namabidang,md_jabatan.namajabatan,md_karyawan.alamatsekarang,md_karyawan.jeniskelamin,md_marital.deskripsi,nik,nohp,email,alamatsekarang,levelpendidikan,jurusan,institusi,tahunlulus,tempatlahir,md_karyawan.mulaibekerja,md_karyawan.tgldiangkat,mk_jabatan.statusjabatan,mk_jabatan.tglmulai as tmt_jabatan,md_karyawan.idmd_marital,md_karyawan.tgllahir,md_karyawan.agama,kategorifungsi,mk_jabatan.idmd_level,md_level.level,md_level.namalevel');
         $this->db->from('md_karyawan');
         $this->db->join('mk_jabatan', 'mk_jabatan.npk = md_karyawan.npk', 'left' );
         $this->db->join('md_jabatan', 'mk_jabatan.idmd_jabatan = md_jabatan.idmd_jabatan', 'left' );
         $this->db->join('md_bidang', 'mk_jabatan.idmd_bidang = md_bidang.idmd_bidang', 'left' );
         $this->db->join('md_organisasi', 'mk_jabatan.idmd_organisasi = md_organisasi.idmd_organisasi', 'left' );
+        $this->db->join('md_marital', 'md_marital.status = md_karyawan.idmd_marital', 'left' );
+        $this->db->join('md_level', 'md_level.idmd_level = mk_jabatan.idmd_level', 'left' );
+        $this->db->join('mk_pendidikan', 'mk_pendidikan.npk = md_karyawan.npk', 'left' );
 
         $query=$this->db->get();
         return $query->result();
@@ -125,6 +128,40 @@ class Data_karyawan_model extends CI_Model {
          $this->db->where('npk', $npk);
          $this->db->update('md_karyawan', $data);
             
+    }
+
+    public function insert_riwayat($data)
+    {
+         $this->db->insert('riwayat_jabatan', $data);
+            
+    }
+
+     public function update_jabatan($data,$npk)
+    {
+         $this->db->where('npk', $npk);
+         $this->db->update('mk_jabatan', $data);
+            
+    }
+    public function ambil_data($npk)
+    {
+        $this->db->select('mk_jabatan.tglmulai,mk_jabatan.npk,mk_jabatan.idmd_organisasi,md_organisasi.namaorganisasi,mk_jabatan.idmd_bidang,md_bidang.namabidang,mk_jabatan.idmd_jabatan,md_jabatan.namajabatan,mk_jabatan.idmd_level,md_level.namalevel,statusjabatan,kategorifungsi');
+        $this->db->from('mk_jabatan');
+        $this->db->join('md_jabatan', 'mk_jabatan.idmd_jabatan = md_jabatan.idmd_jabatan', 'left' );
+        $this->db->join('md_bidang', 'mk_jabatan.idmd_bidang = md_bidang.idmd_bidang', 'left' );
+        $this->db->join('md_organisasi', 'mk_jabatan.idmd_organisasi = md_organisasi.idmd_organisasi', 'left' );
+        $this->db->join('md_level', 'md_level.idmd_level = mk_jabatan.idmd_level', 'left' );
+        $this->db->where('mk_jabatan.npk', $npk);
+        $query=$this->db->get();
+        return $query->row_array();
+    }
+    public function getriwayatjbt($npk)
+    {
+        $this->db->select('tglmulai,timestamp,namajabatan,tglberahir');
+        $this->db->from('riwayat_jabatan');
+        $this->db->where('riwayat_jabatan.npk', $npk);
+        $this->db->order_by('id_riwayat_jabatan', 'DESC');
+        $query=$this->db->get();
+        return $query->result_array();
     }
 
     

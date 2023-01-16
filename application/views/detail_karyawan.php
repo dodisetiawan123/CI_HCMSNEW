@@ -131,6 +131,179 @@
                                     </div><!-- /.modal -->
                                 </div>
 
+                                <!--  Extra Large modal example -->
+                                    <div class="modal fade modaltransfer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modaltransfer">Form Transfer Karyawan</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                     <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="card">
+                                                                 <div class="card-body">
+
+                                                                    <div id="transfer-wizard" class="twitter-bs-wizard">
+                                                                        <ul class="twitter-bs-wizard-nav nav nav-pills nav-justified">
+                                                                            <li class="nav-item">
+                                                                                <a href="#progress-transfer" class="nav-link" data-toggle="tab">
+                                                                                    <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Informasi Transfer">
+                                                                                        <i class="bx bx-transfer-alt"></i>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                           
+                                                                        </ul>
+                                                                        <!-- wizard-nav -->
+
+                                                                        <div class="tab-content twitter-bs-wizard-tab-content">
+                                                                            <div class="tab-pane" id="progress-transfer">
+                                                                                <form class="needs-validation" enctype="multipart/form-data" accept-charset="utf-8" method="post" action="<?php echo site_url('admin/transferjabatan/'.$personaldata['npk']) ?>">
+                                                                                <div class="text-center mb-4">
+                                                                                    <h5>Transfer Karyawan</h5>
+                                                                                    <p class="card-title-desc">Isi informasi karyawan organisasi</p>
+                                                                                </div>
+                                                                                
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="validationTooltip03">Nama Karyawan</label>
+                                                                                                <input type="text" class="form-control" name="namatrf" placeholder="Nama Karyawan" id="validationTooltip03" required value="<?php echo $personaldata['nama'] ?>" readonly>
+                                                                                                 <div class="invalid-feedback">
+                                                                                                    Isi karyawan organisasi yang valid.
+                                                                                                 </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="validationTooltip03">No. NPK</label>
+                                                                                                <input type="text" class="form-control" name="npktrf" placeholder="No NPK" style="text-transform: capitalize" id="validationTooltip03" required value="<?php echo $personaldata['npk'] ?>" readonly>
+                                                                                                 <div class="invalid-feedback">
+                                                                                                    Isi no NIP yang valid.
+                                                                                                 </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="row">
+                                                                                            <div class="col-lg-6">
+                                                                                                <div class="mb-3">
+                                                                                                    <label for="choices-single-no-sorting" class="form-label">Satuan Organisasi</label>
+                                                                                                    <input id="NmSatminkaltrf" name="NmSatminkaltrf" type="hidden" class="form-control" required>
+                                                                                                    <select class="form-control" name="idmd_organisasitrf" id="idmd_organisasitrf" placeholder="Pilih satuan organisasi" required>
+                                                                                                        
+                                                                                                        <option value="">Pilih Satuan Organisasi</option>
+                                                                                                        <?php foreach ($organisasi as $data) {?>
+                                                                                                        <option value="<?php echo $data->idmd_organisasi; ?>"><?php echo $data->namaorganisasi; ?></option>
+                                                                                                        <?php } ?>
+
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-6">
+                                                                                                <div class="mb-3">
+                                                                                                    <label for="choices-single-no-sorting" class="form-label">Bidang Organisasi</label>
+                                                                                                    <select class="form-control" name="idmd_bidangtrf" id="idmd_bidangtrf" placeholder="Pilih bagian" required>
+                                                                                                        <option value="">Pilih bagian</option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                            <div class="col-lg-12">
+                                                                                                 <div class="mb-3">
+                                                                                                    <label for="choices-single-no-sorting" class="form-label">Jabatan Organisasi</label>
+                                                                                                    <input id="NmBidangtrf" name="NmBidangtrf" type="hidden" class="form-control">
+                                                                                                    <select class="form-control" name="idmd_jabatantrf" id="idmd_jabatantrf" placeholder="Pilih jabatan" required>
+                                                                                                        <option value="">Pilih jabatan</option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="mb-3">
+                                                                                            <label for="validationTooltip03">Level Jabatan</label>
+                                                                                            <select class="form-control" name="idmd_leveltrf" id="pilih-leveltrf" placeholder="Pilih level jabatan" required>
+
+                                                                                                <option value="">Pilih level jabatan</option>
+                                                                                                <?php foreach ($level as $data) {?>
+                                                                                                <option value="<?php echo $data->level ?>"><?php echo $data->level ?> - <?php echo $data->namalevel ?></option>
+                                                                                                <?php } ?>
+                                                                                            </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="validationTooltip03">Status Jabatan</label>
+                                                                                                <select class="form-control" name="statusjabatantrf" id="statusjabatantrf" placeholder="Status Jabatan" required>
+                                                                                                    <option value="">Pilih status jabatan karyawan</option>
+                                                                                                    <option value="Def.">Def. - Definitif</option>
+                                                                                                    <option value="Pgs.">Pgs. - Penganti Sementara</option>
+                                                                                                    <option value="Pjs.">Pjs. - Pejabat Sementara</option>
+                                                                                                    <option value="Plt.">Plt. - Pelaksana Tugas</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="validationTooltip03">TMT Jabatan</label>
+                                                                                                <input type="text" class="form-control" id="datepicker-datetime-tmtjabatantrf" name="tglmulai" placeholder="TMT Jabatan">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="validationTooltip03">Kategori Fungsi</label>
+                                                                                                <select class="form-control" name="kategorifungsitrf" id="fungsitrf" placeholder="Pilih satuan organisasi">
+                                                                                                    <option value="">Pilih kategori fungsi</option>
+                                                                                                    <option value="Core">Core</option>
+                                                                                                    <option value="Support">Support</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="row">
+                                                                                        
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="validationTooltip03">Keterangan</label>
+                                                                                                <textarea class="form-control"  rows="3"  name="keterangantrf"></textarea>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                
+
+                                                                                  
+                                                                                
+                                                                                <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                                                        
+                                                                                        <li class="float-end"><input type="submit" value="Simpan" class="btn btn-primary" /></li>
+                                                                                </ul>
+                                                                                </form>
+                                                                          
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- end card body -->
+                                                            </div>
+                                                            <!-- end card -->
+                                                        </div>
+                                                        <!-- end col -->
+                                                    </div>
+                                                    <!-- end row -->
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+                                </div>
+
 
                             <div>
                                      <!--  Extra Large modal example -->
@@ -172,7 +345,7 @@
                                                                                 </a>
                                                                             </li>
 
-                                                                            <li class="nav-item">
+                                                                            <!-- <li class="nav-item">
                                                                                 <a href="#progress-grade" class="nav-link" data-toggle="tab">
                                                                                     <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Grade">
                                                                                         <i class="bx bx-user-pin"></i>
@@ -202,7 +375,7 @@
                                                                                         <i class="bx bx-bar-chart"></i>
                                                                                     </div>
                                                                                 </a>
-                                                                            </li>
+                                                                            </li> -->
                                                                         </ul>
                                                                         <!-- wizard-nav -->
 
@@ -483,16 +656,16 @@
                                                                                                     <label for="choices-single-no-sorting" class="form-label ">Status Jabatan</label>
                                                                                                     <select class="form-control" name="statusjabatan" id="statusjabatan" placeholder="Status Jabatan">
                                                                                                         <option value="">Pilih status jabatan karyawan</option>
-                                                                                                        <option value="Definitif" <?php if ($personaldata['statusjabatan'] == 'Definitif'): ?>
+                                                                                                        <option value="Def." <?php if ($personaldata['statusjabatan'] == 'Def.'): ?>
                                                                                                             selected
                                                                                                         <?php endif ?>>Def. - Definitif</option>
-                                                                                                        <option value="Penganti Sementara" <?php if ($personaldata['statusjabatan'] == 'Penganti Sementara'): ?>
+                                                                                                        <option value="Pgs." <?php if ($personaldata['statusjabatan'] == 'Pgs.'): ?>
                                                                                                             selected
                                                                                                         <?php endif ?>>Pgs. - Penganti Sementara</option>
-                                                                                                        <option value="Pejabat Sementara" <?php if ($personaldata['statusjabatan'] == 'Pejabat Sementara'): ?>
+                                                                                                        <option value="Pjs." <?php if ($personaldata['statusjabatan'] == 'Pjs.'): ?>
                                                                                                             selected
                                                                                                         <?php endif ?>>Pjs. - Pejabat Sementara</option>
-                                                                                                        <option value="Pelaksana Tugas" <?php if ($personaldata['statusjabatan'] == 'Pelaksana Tugas'): ?>
+                                                                                                        <option value="Plt." <?php if ($personaldata['statusjabatan'] == 'Plt.'): ?>
                                                                                                             selected
                                                                                                         <?php endif ?>>Plt. - Pelaksana Tugas</option>
                                                                                                     </select>
@@ -525,11 +698,11 @@
                                                                                         </div>
                                                                                     <ul class="pager wizard twitter-bs-wizard-pager-link">
                                                                                         <li class="previous"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()"><i class="bx bx-chevron-left me-1"></i> Previous</a></li>
-                                                                                        <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Next <i class="bx bx-chevron-right ms-1"></i></a></li>
+                                                                                       <li class="float-end"><button id="submit" type="submit" class="btn btn-primary">Save Changes</button></li>
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="tab-pane" id="progress-grade">
+                                                                            <!-- <div class="tab-pane" id="progress-grade">
                                                                                 <div>
                                                                                     <div class="text-center mb-4">
                                                                                         <h5>GRADE</h5>
@@ -562,8 +735,8 @@
                                                                                         <li class="next"><a href="javascript: void(0);" class="btn btn-primary" onclick="nextTab()">Next <i class="bx bx-chevron-right ms-1"></i></a></li>
                                                                                     </ul>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="tab-pane" id="progress-upah-berlaku">
+                                                                            </div> -->
+                                                                            <!-- <div class="tab-pane" id="progress-upah-berlaku">
                                                                                 <div>
                                                                                     <div class="text-center mb-4">
                                                                                         <h5>UPAH BERLAKU</h5>
@@ -848,7 +1021,7 @@
                                                                                         <li class="float-end"><button id="submit" type="submit" class="btn btn-primary">Save Changes</button></li>
                                                                                     </ul>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> -->
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -887,7 +1060,7 @@
                             </div>
 
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-outline-primary text-truncate"><i class="uil uil-user me-1"></i> Transfer</button>
+                                <button type="button" class="btn btn-outline-primary text-truncate" data-bs-toggle="modal" data-bs-target=".modaltransfer"><i class="uil uil-user me-1"></i> Transfer</button>
                                 <button type="button" class="btn btn-outline-primary text-truncate"><i class="uil uil-envelope-alt me-1"></i> Resign</button>
                                 <button type="button" class="btn btn-outline-danger text-truncate"><i class="uil uil-envelope-alt me-1"></i> Delete</button>
 
@@ -905,9 +1078,9 @@
                                         </h2>
                                         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                            <div class="list-group" id="list-tab" role="tablist">
-                                              <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="<?php echo site_url('Admin/kehadiran_karyawan/'.$personaldata['npk']) ?>" role="tab" aria-controls="home">Attendance</a>
-                                              <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Timeoff</a>
-                                              <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Overtime</a>
+                                              <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="<?php echo site_url('Admin/kehadiran_karyawan/'.$personaldata['npk']) ?>" role="tab" aria-controls="home">#Attendance</a>
+                                              <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">#Timeoff</a>
+                                              <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">#Overtime</a>
                                             </div>
                                         </div>
                                     </div>
@@ -935,7 +1108,7 @@
                                         </h2>
                                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                                             <div class="list-group" id="list-tab" role="tablist">
-                                              <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Aset Personal</a>
+                                              <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">#Aset Personal</a>
                                             </div>
                                         </div>
                                     </div>
@@ -976,15 +1149,18 @@
 
                                 <ul class="nav nav-tabs-custom card-header-tabs border-top mt-4" id="pills-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link px-3 active" data-bs-toggle="tab" href="#overview" role="tab">PERSONAL</a>
+                                        <a class="nav-link px-3 active" data-bs-toggle="tab" href="#overview" role="tab">PERSONAL BACKGROUND</a>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a class="nav-link px-3" data-bs-toggle="tab" href="#kontak" role="tab">CONTACT PERSON</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link px-3" data-bs-toggle="tab" href="#informasi" role="tab">EDUCATIONAL</a>
+                                        <a class="nav-link px-3" data-bs-toggle="tab" href="#informasi" role="tab">EDUCATIONAL BACKGROUND</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link px-3" data-bs-toggle="tab" href="#about" role="tab">CAREER</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a class="nav-link px-3" data-bs-toggle="tab" href="#efisiensi" role="tab">GRADE</a>
                                     </li>
                                     <li class="nav-item">
@@ -995,7 +1171,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link px-3" data-bs-toggle="tab" href="#efisiensitab" role="tab">EFISIENSI</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                             <!-- end card body -->
@@ -1015,7 +1191,7 @@
                                                     <div class="mt-3">
                                                         <div class="d-flex align-items-start">
                                                             <div class="flex-grow-1 overflow-hidden">
-                                                                <h5 class="font-size-14 text-truncate"><a href="#" class="text-dark">Nama Lengkap</a></h5>
+                                                                <h5 class="font-size-14 text-truncate"><a href="#" class="text-dark">Nama Karyawan</a></h5>
                                                                 <p class="font-size-13 text-muted mb-0"><?php echo $personaldata['nama']; ?></p>
                                                             </div>
                                                         </div>
@@ -1135,6 +1311,29 @@
                                             </div>
                                             <!-- end row -->
 
+                                            
+
+                                           
+
+                                           
+                                        </div>
+                                    </div>
+                                    <!-- end card body -->
+
+
+                                </div>
+                                <!-- end card -->
+
+                            </div>
+                            <!-- end tab pane -->
+
+                            <div class="tab-pane" id="kontak" role="tabpanel">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0"> Contact Person  <?php echo $personaldata['nama'] ?></h5>
+                                    </div>
+                                    <div class="card-body">
+                                         <div class="mb-5">
                                             <div class="row justify-content-center">
                                                 <div class="col-xl-5">
                                                     <div class="mt-3">
@@ -1165,13 +1364,12 @@
 
                                             </div>
                                             <!-- end row -->
-
-                                            <div class="row justify-content-center">
+                                             <div class="row justify-content-center">
                                                 <div class="col-xl-10">
                                                     <div class="mt-3">
                                                         <div class="d-flex align-items-start">
                                                             <div class="flex-grow-1 overflow-hidden">
-                                                                <h5 class="font-size-14 text-truncate"><a href="#" class="text-dark">Alamat Sekarang</a></h5>
+                                                                <h5 class="font-size-14 text-truncate"><a href="#" class="text-dark">Alamat</a></h5>
                                                                 <p class="font-size-13 text-muted mb-0"><?php echo $personaldata['alamatsekarang']; ?></p>
                                                             </div>
                                                         </div>
@@ -1183,20 +1381,19 @@
 
                                             </div>
                                             <!-- end row -->
+                                           
+
+                                           
 
                                            
                                         </div>
                                     </div>
                                     <!-- end card body -->
-
-
                                 </div>
                                 <!-- end card -->
 
                             </div>
                             <!-- end tab pane -->
-
-                           
 
 
                             <div class="tab-pane" id="informasi" role="tabpanel">
@@ -1416,6 +1613,25 @@
                                             <!-- end row -->
 
                                              <div class="row justify-content-center">
+                                                <div class="col-xl-10">
+                                                    <div class="mt-3">
+                                                        <div class="d-flex align-items-start">
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                <h5 class="font-size-14 text-truncate"><a href="#" class="text-dark">TMT Jabatan</a></h5>
+                                                                <p class="font-size-13 text-muted mb-0"><?php echo $personaldata['tglmulai']; ?></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- end post -->
+                                                    <hr class="mt-1">
+                                                </div>
+                                                <!-- end col -->
+
+
+                                            </div>
+                                            <!-- end row -->
+
+                                             <div class="row justify-content-center">
                                                 <div class="col-xl-3">
                                                     <div class="mt-3">
                                                         <div class="d-flex align-items-start">
@@ -1492,12 +1708,60 @@
 
                                             </div>
                                             <!-- end row -->
+                                           
 
                                            
                                         </div>
+
                                     </div>
                                 </div>
                                 <!-- end card -->
+                                 <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4 class="card-title">Position History</h4>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table mb-0">
+
+                                                                <thead class="table-light">
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>TMT Jabatan</th>
+                                                                        <th>Tanggal Berahir</th>
+                                                                        <th>Nama Jabatan</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    $no = 0;
+                                                                     foreach ($riwayatjbt as $data) {$no=$no+1;?>
+                                                                    <tr>
+                                                                        <th scope="row"><?php echo $no; ?></th>
+                                                                        <td><?php echo $data['tglmulai']; ?></td>
+                                                                        <td><?php echo $data['tglberahir']; ?></td>
+                                                                        <td><?php echo $data['namajabatan']; ?></td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-light btn-sm">Detail</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <?php } ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <!-- end card body -->
+                                                </div>
+                                                <!-- end card -->
+                                            </div>
+                                            <!-- end col -->
+
+                                           
+                                        </div>
+                                        <!-- end row -->
                             </div>
                             <!-- end tab pane -->
 
@@ -2203,6 +2467,93 @@
                 var i;
                 for (i = 0; i < data.length; i++) {
                     jabatan.setChoices([{
+                          value: data[i].idmd_jabatan,
+                          label: data[i].namajabatan
+                        }]);
+
+                }
+
+            }
+        });
+    });
+
+
+    
+</script>
+
+<script type="text/javascript">
+
+    const bidangtrf = new Choices('#idmd_bidangtrf', {
+    shouldSort: false,placeholder: true
+    });
+    
+    const jabatantrf = new Choices('#idmd_jabatantrf', {
+    shouldSort: false,placeholder: true
+    });
+
+
+    var urlbidangtrf = '<?php echo site_url('data/getbidang') ?>';
+    var urljabatantrf = '<?php echo site_url('data/getjabatan') ?>';
+
+    $('#idmd_organisasitrf').change(function () {
+        bidangtrf.clearChoices();
+        jabatantrf.clearChoices();
+        var id = $('#idmd_organisasitrf').find('option:selected').val();
+        $('#NmSatminkaltrf').val(id);
+        $.ajax({
+            url: urlbidangtrf,
+            method: "POST",
+            data: { id: id },
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                bidangtrf.setChoices([{
+                          value: '',
+                          label: 'Pilih bidang',
+                          selected:true,
+                          disabled: true
+                        }]);
+                jabatantrf.setChoices([{
+                          value: '',
+                          label: 'Pilih bagian',
+                          selected:true,
+                          disabled: true
+                        }]);
+                var i;
+                for (i = 0; i < data.length; i++) {
+                    bidangtrf.setChoices([{
+                          value: data[i].idmd_bidang,
+                          label: data[i].namabidang
+                        }]);
+
+
+
+                }
+
+            }
+        });
+    });
+
+     $('#idmd_bidangtrf').change(function () {
+        jabatantrf.clearChoices();
+        var id = $('#idmd_bidangtrf').find('option:selected').val();
+        $('#NmBidangtrf').val(id);
+        $.ajax({
+            url: urljabatantrf,
+            method: "POST",
+            data: { id: id },
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                jabatantrf.setChoices([{
+                          value: '',
+                          label: 'Pilih jabatan',
+                          selected:true,
+                          disabled: true
+                        }]);
+                var i;
+                for (i = 0; i < data.length; i++) {
+                    jabatantrf.setChoices([{
                           value: data[i].idmd_jabatan,
                           label: data[i].namajabatan
                         }]);

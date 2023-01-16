@@ -12,8 +12,9 @@ class Data_organisasi_model extends CI_Model {
 
     public function get_organisasi()
     {
-        $this->db->select('idmd_organisasi,kodeorganisasi,namaorganisasi');
+        $this->db->select('idmd_organisasi,idmd_organisasi as id,kodeorganisasi,namaorganisasi,(SELECT IFNULL(SUM(standard), 0) FROM md_jabatan where idmd_organisasi = id) as standard,');
         $this->db->from('md_organisasi');
+        $this->db->where('md_organisasi.deleted', '0');
         $query=$this->db->get();
         return $query->result();
     }
@@ -26,8 +27,12 @@ class Data_organisasi_model extends CI_Model {
 
      public function hapusorganisasi($idmd_organisasi)
     {
+        $data = array(
+                    'deleted' => '1',
+            );
+
         $this->db->where('idmd_organisasi', $idmd_organisasi);
-        $this->db->delete('md_organisasi');
+        $this->db->update('md_organisasi', $data);
         
     }
     

@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var singleNoSorting = new Choices('#pilih-level', {
     shouldSort: false,
   });
+  var singleNoSorting = new Choices('#pilih-leveltrf', {
+    shouldSort: false,
+  });
 
   // Nama Organisasi
   var singleNoSorting = new Choices('#idmd_organisasi', {
@@ -63,55 +66,68 @@ document.addEventListener('DOMContentLoaded', function () {
     shouldSort: false,searchEnabled: false,
   });
 
+  var singleNoSorting = new Choices('#fungsitrf', {
+    shouldSort: false,searchEnabled: false,
+  });
+
   // Status Jabatan
   var singleNoSorting = new Choices('#statusjabatan', {
     shouldSort: false,searchEnabled: false,
   });
+  // Status Jabatan
+  var singleNoSorting = new Choices('#statusjabatantrf', {
+    shouldSort: false,searchEnabled: false,
+  });
+
+   // Nama Organisasi
+  var singleNoSorting = new Choices('#idmd_organisasitrf', {
+    shouldSort: false,
+  });
 
   // Status Jabatan
-  var singleNoSorting = new Choices('#grade', {
-    shouldSort: false,searchEnabled: false,
-  });
+  // var singleNoSorting = new Choices('#grade', {
+  //   shouldSort: false,searchEnabled: false,
+  // });
 
-  // status-keaktifan
-  var singleNoSorting = new Choices('#status-keaktifan', {
-    shouldSort: false,searchEnabled: false,
-  });
+  // // status-keaktifan
+  // var singleNoSorting = new Choices('#status-keaktifan', {
+  //   shouldSort: false,searchEnabled: false,
+  // });
 
-   // status-dirumahkan
-  var singleNoSorting = new Choices('#status-dirumahkan', {
-    shouldSort: false,searchEnabled: false,
-  });
+  //  // status-dirumahkan
+  // var singleNoSorting = new Choices('#status-dirumahkan', {
+  //   shouldSort: false,searchEnabled: false,
+  // });
 
-  // status-batch
-  var singleNoSorting = new Choices('#status-batch', {
-    shouldSort: false,searchEnabled: false,
-  });
+  // // status-batch
+  // var singleNoSorting = new Choices('#status-batch', {
+  //   shouldSort: false,searchEnabled: false,
+  // });
 
-  // aktifitasobsolete
-  var singleNoSorting = new Choices('#aktifitasobsolete', {
-    shouldSort: false,searchEnabled: false,
-  });
+  // // aktifitasobsolete
+  // var singleNoSorting = new Choices('#aktifitasobsolete', {
+  //   shouldSort: false,searchEnabled: false,
+  // });
 
-  // aktifitas2022
-  var singleNoSorting = new Choices('#aktifitas2022', {
-    shouldSort: false,searchEnabled: false,
-  });
+  // // aktifitas2022
+  // var singleNoSorting = new Choices('#aktifitas2022', {
+  //   shouldSort: false,searchEnabled: false,
+  // });
 
-  // subaktifitas
-  var singleNoSorting = new Choices('#subaktifitas', {
-    shouldSort: false,searchEnabled: false,
-  });
+  // // subaktifitas
+  // var singleNoSorting = new Choices('#subaktifitas', {
+  //   shouldSort: false,searchEnabled: false,
+  // });
 
-  // statuskepegawaian
-  var singleNoSorting = new Choices('#statuskepegawaian', {
-    shouldSort: false,searchEnabled: false,
-  });
+  // // statuskepegawaian
+  // var singleNoSorting = new Choices('#statuskepegawaian', {
+  //   shouldSort: false,searchEnabled: false,
+  // });
 
-  // tekniknonteknik
-  var singleNoSorting = new Choices('#tekniknonteknik', {
-    shouldSort: false,searchEnabled: false,
-  });
+  // // tekniknonteknik
+  // var singleNoSorting = new Choices('#tekniknonteknik', {
+  //   shouldSort: false,searchEnabled: false,
+  // });
 
  
   
@@ -154,6 +170,12 @@ flatpickr('#datepicker-datetime-tanggalmasuk', {
 });
 
 flatpickr('#datepicker-datetime-tmtjabatan', {
+  enableTime: false,
+  maxDate: new Date().fp_incr(0),
+  dateFormat: "Y-m-d",
+  allowInput: true
+});
+flatpickr('#datepicker-datetime-tmtjabatantrf', {
   enableTime: false,
   maxDate: new Date().fp_incr(0),
   dateFormat: "Y-m-d",
